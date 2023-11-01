@@ -1,15 +1,15 @@
 import * as React from 'react'
 import {useState} from 'react'
-const VehiclesDropDown = () => {
+const VehiclesDropDown = (props) => {
 
     return (
 
     <>
-       <div className='navbar-desktop flex z-[-1] justify-between bg-white absolute inset-x-0 top-0 h-screen md:h-[77%]'>
+       <div  id="vehicleDropdown" className=' hidden flex  z-[-1] justify-between bg-white absolute inset-x-0 top-0 h-screen md:h-[77%]'>
             
             <div className='pt-24'>
-                <div className='absolute flex xl:gap-12 xl:w-3/5 mx-auto inset-x-0'>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 w-screen'>
+                <div className='absolute flex-col flex xl:gap-12 xl:w-3/5 mx-auto inset-x-0'>
+                    <div className='grid pt-3 grid-cols-2 lg:grid-cols-3 w-screen'>
 
                         <div className='flex flex-col items-center'>
                             <a href="https://www.tesla.com/models">

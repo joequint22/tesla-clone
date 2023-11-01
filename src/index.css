@@ -7,5 +7,6 @@
     src: url('./assets/GothamSSm-Book_Web.woff2');
 }
 * {
+    user-select: none;
     font-family: 'Gotham Book';
 }

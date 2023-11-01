@@ -1,19 +1,31 @@
 import React from "react";
+import {useState} from "react";
 
 const Dropdown = (props) => {
   //FIGURE OUT HOW TO PROCEED VIA VIDEO
+  // const [show, setShow] = useState(props.show)
+  // function handleClickVehicles(){
+  //   setShow(!show)
+  //   const dropdown = document.getElementById('dropdown')
+  //   const vehicleDropdown = document.getElementById('vehicleDropdown')
+  //   if(!show){
+  //     dropdown?.classList.add('hidden')
+  //     vehicleDropdown?.classList.add('')
+  //   }
+
+  
   return (
     <>
       <div
-        id=" dropdown"
-        className=" h-screen justify-center items-center flex inset-x-0 top-10  absolute bg-white"
+        id="dropdown"
+        className="h-screen justify-center items-center flex inset-x-0 top-10  absolute bg-white"
       >
         <ul className="grid cursor-pointer w-full text-sm items-center  h-[85vh]">
 
 
-          <div className="flex h-20 pl-8 items-center justify-between hover:bg-gray-200 hover:duration-500 ">
+          <div  onClick={props.handleClickVehicles} className="flex h-20 pl-8 items-center justify-between hover:bg-gray-200 hover:duration-500 ">
             
-            <li onClick={props.handleClickMobile} className="">Vehicles</li>
+            <li  className="">Vehicles</li>
             
             <img className=" pr-8 h-5" src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0idGRzLWljb24gdGRzLWljb24tY2hldnJvbi1zbWFsbC05MCB0ZHMtaWNvbi0tc21hbGwiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik00Ljk3NSAyLjc1YS43NDguNzQ4IDAgMCAxIDEuMjgxLS41M2w1LjI1IDUuMjY0YS43NS43NSAwIDAgMSAwIDEuMDZMNi4yODMgMTMuNzhhLjc1Ljc1IDAgMSAxLTEuMDYyLTEuMDZsNC42OTUtNC43MDZMNS4xOTQgMy4yOGEuNzQ4Ljc0OCAwIDAgMS0uMjE5LS41M3oiLz48L3N2Zz4=" alt="arrow" />
           </div>

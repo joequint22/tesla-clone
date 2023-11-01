@@ -5,28 +5,30 @@ import Dropdown from './NavbarDropdown/Dropdown'
 const Navbar = () => {
     const [show, setShow] = useState(false)
     const [showMobile, setShowMobile] = useState(false)
-
-  const handleClick = (e) => {
-    setShow(!show)
     const footer = document.getElementById('footer')
     const navbar = document.getElementById('navbar')
     const menu = document.getElementById('menu')
     const logo = document.getElementById('logo')
     const dropdown = document.getElementById('dropdown')
+    const vehicleDropdown = document.getElementById('vehicleDropdown')
     const icons = document.querySelectorAll('.icon-1, .icon-2, .icon-3')
+    
+    const handleClick = (e) => {
+    setShow(!show)
+    
 
     if(!show){
-      footer?.classList.add('hidden')
-      logo?.classList.remove('invert')
-      navbar?.classList.remove('text-white')
-      navbar?.classList.add('bg-white')
-      icons?.forEach(icon =>icon.classList.remove('invert'))
-      menu?.classList.remove('text-white')
-
-
+      // footer?.classList.add('hidden')
+      // logo?.classList.remove('invert')
+      // navbar?.classList.remove('text-white')
+      // navbar?.classList.add('bg-white')
+      // icons?.forEach(icon =>icon.classList.remove('invert'))
+      // menu?.classList.remove('text-white')
+      
     } else {
       footer?.classList.remove('hidden')
       navbar?.classList.remove('bg-white')
+      dropdown?.classList.remove('hidden')
       logo?.classList.add('invert')
       navbar?.classList.add('text-white')
       icons?.forEach(icon =>icon.classList.add('invert'))
@@ -53,6 +55,7 @@ const Navbar = () => {
       navbar?.classList.add('bg-white')
       navbar?.classList.remove('text-white')
       dropdown?.classList.remove('text-white')
+      dropdown?.classList.remove('hidden')
       icons?.forEach(icon =>icon.classList.remove('invert'))
       menu?.classList.remove('text-white')
       menu?.classList.remove('backdrop-blur-lg')
@@ -114,8 +117,8 @@ const Navbar = () => {
         <div id="menu" onClick={handleClickMobile} className='text-white xl:hidden cursor-pointer lg:hidden backdrop-blur-lg px-4 py-2 rounded-md'>Menu</div>
 
         {/* {show && <MobileNavbar/>} */}
-        {show && <VehiclesDropDown /> }
-        {showMobile && <Dropdown /> }
+        {show && <VehiclesDropDown onClick={handleClick} /> }
+        {showMobile && <Dropdown show={show} handleClickVehicles={handleClick}/> }
 
         
       </div>
