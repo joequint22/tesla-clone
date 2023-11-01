@@ -1,23 +1,32 @@
 import {useState} from 'react'
-import NavbarVehicle from './NavbarDropdown/vehicles'
-import MobileNavbar from './NavbarDropdown/MobileNavbar'
+import VehiclesDropDown from './NavbarDropdown/VehiclesDropDown'
+import Dropdown from './NavbarDropdown/Dropdown'
 
 const Navbar = () => {
     const [show, setShow] = useState(false)
+    const [showMobile, setShowMobile] = useState(false)
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     setShow(!show)
+    const footer = document.getElementById('footer')
     const navbar = document.getElementById('navbar')
     const menu = document.getElementById('menu')
     const logo = document.getElementById('logo')
+    const dropdown = document.getElementById('dropdown')
     const icons = document.querySelectorAll('.icon-1, .icon-2, .icon-3')
+
     if(!show){
+      footer?.classList.add('hidden')
       logo?.classList.remove('invert')
       navbar?.classList.remove('text-white')
+      navbar?.classList.add('bg-white')
       icons?.forEach(icon =>icon.classList.remove('invert'))
       menu?.classList.remove('text-white')
 
+
     } else {
+      footer?.classList.remove('hidden')
+      navbar?.classList.remove('bg-white')
       logo?.classList.add('invert')
       navbar?.classList.add('text-white')
       icons?.forEach(icon =>icon.classList.add('invert'))
@@ -28,9 +37,46 @@ const Navbar = () => {
 
     
   }
+
+  const handleClickMobile = (e) => {
+    setShowMobile(!showMobile)
+    const footer = document.getElementById('footer')
+    const navbar = document.getElementById('navbar')
+    const menu = document.getElementById('menu')
+    const logo = document.getElementById('logo')
+    const dropdown = document.getElementById('dropdown')
+    const icons = document.querySelectorAll('.icon-1, .icon-2, .icon-3')
+
+    if(!showMobile){
+      footer?.classList.add('hidden')
+      logo?.classList.remove('invert')
+      navbar?.classList.add('bg-white')
+      navbar?.classList.remove('text-white')
+      dropdown?.classList.remove('text-white')
+      icons?.forEach(icon =>icon.classList.remove('invert'))
+      menu?.classList.remove('text-white')
+      menu?.classList.remove('backdrop-blur-lg')
+
+
+
+    } else {
+      footer?.classList.remove('hidden')
+      navbar?.classList.remove('bg-white')
+      logo?.classList.add('invert')
+      navbar?.classList.add('text-white')
+      icons?.forEach(icon =>icon.classList.add('invert'))
+      menu?.classList.add('text-white')
+      menu?.classList.add('backdrop-blur-lg')
+
+
+
+    }
+
+    
+  }
   return (
     <>
-      <div className='navbar px-6 lg:px-12 py-2 flex justify-between items-center'>
+      <div id='navbar' className=' z-0 px-6 lg:px-12 py-2 flex justify-between items-center'>
 
         <div>
           <a href="https://www.tesla.com">
@@ -39,7 +85,7 @@ const Navbar = () => {
         </div>
 
 
-        <div id='navbar' className="hidden xl:inline-block text-sm font-bold text-white ">
+        <div id='navbar' className="hidden lg:inline-block text-sm font-bold text-white ">
           <ul className='flex justify-between '>
             <li onClick={handleClick} className='hover:bg-black/20 px-4 py-2 hover:duration-500 rounded-md hover:scale-105 hover:cursor-pointer'>Vehicles</li>
             <li className='hover:bg-black/20 px-4 py-2 hover:duration-500 rounded-md hover:scale-105 hover:cursor-pointer'>Energy</li>
@@ -50,7 +96,7 @@ const Navbar = () => {
         </div>
 
   
-        <div className='hidden xl:inline-block hover:cursor-pointer font-medium rounded-md items-center '>
+        <div className='hidden lg:inline-block hover:cursor-pointer font-medium rounded-md items-center '>
           <ul className='flex pt-2 justify-between'>
             <li className='hover:bg-black/20 hover:duration-500 rounded-md hover:scale-105 hover:cursor-pointer'>
               <img className='icon-1 invert h-7' src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0idGRzLWljb24gdGRzLWljb24taGVscCIgdmlld0JveD0iMCAwIDI0IDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTEyIDIwLjVhOC41IDguNSAwIDEgMSAwLTE3IDguNSA4LjUgMCAwIDEgMCAxN1ptMCAxLjVjNS41MjMgMCAxMC00LjQ3NyAxMC0xMFMxNy41MjMgMiAxMiAyIDIgNi40NzcgMiAxMnM0LjQ3NyAxMCAxMCAxMFptMC02YTEgMSAwIDEgMCAwIDIgMSAxIDAgMCAwIDAtMlptLjA1My0zLjUzM2E3LjggNy44IDAgMCAxIC45Mi0uNzY3IDYuOTcgNi45NyAwIDAgMCAuNzQ2LS42MSAyLjMxIDIuMzEgMCAwIDAgLjQ2OC0uNjM1Yy4xMjYtLjI1My4xODgtLjU0OC4xODgtLjg4MyAwLS4zNzQtLjA4Mi0uNzIzLS4yNDYtMS4wNDgtLjE1OC0uMzI0LS40MTUtLjU4OC0uNzcxLS43OTItLjM1Ni0uMjAzLS44MS0uMzA1LTEuMzYyLS4zMDUtLjU3NSAwLTEuMDQ1LjExNi0xLjQxMS4zNDdhMS45OTEgMS45OTEgMCAwIDAtLjc4OC44OWMtLjA2LjEzNC0uMTEuMjcyLS4xNDguNDEzLS4xMTEuNDE0LS40NDUuNzY3LS44NzQuNzY3LS40MjggMC0uNzg0LS4zNS0uNzEtLjc3Mi4wNy0uNDA3LjItLjc5LjM4Ni0xLjE1LjMwMS0uNTgzLjc1OC0xLjA0OCAxLjM3LTEuMzk0QzEwLjQzNSA2LjE3NiAxMS4xODUgNiAxMi4wNyA2Yy45MyAwIDEuNjg3LjE4MSAyLjI3My41NDQuNTkuMzU4IDEuMDE0LjgwMyAxLjI3MSAxLjMzNy4yNTcuNTMzLjM4NiAxLjA3LjM4NiAxLjYwOCAwIC41NDUtLjA4NSAxLjAxMi0uMjU0IDEuNDAzLS4xNy4zODUtLjM3NS42OTgtLjYxNi45NC0uMjM1LjI0Mi0uNTUuNTE0LS45NDMuODE3LS4zMTIuMjQ3LS41NjEuNDYtLjc0Ny42MzUtLjE4LjE3Ni0uMzMuMzg1LS40NTEuNjI3LS4wNS4wOTktLjA4Ny4yLS4xMTMuMzAyLS4xMDguNDI0LS40MjIuNzg3LS44Ni43ODctLjQzNyAwLS44MDYtLjM1Ni0uNzYtLjc5YTIuOTQ4IDIuOTQ4IDAgMCAxIC43OTctMS43NDNaIiBkYXRhLWRhcmtyZWFkZXItaW5saW5lLWZpbGw9IiIgc3R5bGU9Ii0tZGFya3JlYWRlci1pbmxpbmUtZmlsbDogY3VycmVudENvbG9yOyIvPjwvc3ZnPg==" alt="about" />
@@ -65,10 +111,11 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div id="menu" onClick={handleClick} className='text-white xl:hidden cursor-pointer backdrop-blur-lg px-4 py-2 rounded-md'>Menu</div>
+        <div id="menu" onClick={handleClickMobile} className='text-white xl:hidden cursor-pointer lg:hidden backdrop-blur-lg px-4 py-2 rounded-md'>Menu</div>
 
         {/* {show && <MobileNavbar/>} */}
-        {show && <NavbarVehicle />}
+        {show && <VehiclesDropDown /> }
+        {showMobile && <Dropdown /> }
 
         
       </div>
